@@ -1,0 +1,592 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://script/jugador.gd" id="1"]
+[ext_resource type="Texture2D" path="res://personajes/1_protagonista_32x32.png" id="2"]
+[ext_resource type="Script" path="res://script/enemigo.gd" id="3"]
+[ext_resource type="Script" path="res://script/jefe.gd" id="4"]
+[ext_resource type="Script" path="res://script/cosa.gd" id="5"]
+
+[sub_resource type="AtlasTexture" id="at0"]
+atlas = ExtResource("2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at1"]
+atlas = ExtResource("2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at2"]
+atlas = ExtResource("2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at3"]
+atlas = ExtResource("2")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at4"]
+atlas = ExtResource("2")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at5"]
+atlas = ExtResource("2")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at6"]
+atlas = ExtResource("2")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at7"]
+atlas = ExtResource("2")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at8"]
+atlas = ExtResource("2")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at9"]
+atlas = ExtResource("2")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at10"]
+atlas = ExtResource("2")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at11"]
+atlas = ExtResource("2")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at12"]
+atlas = ExtResource("2")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at13"]
+atlas = ExtResource("2")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at14"]
+atlas = ExtResource("2")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at15"]
+atlas = ExtResource("2")
+region = Rect2(480, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="sf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at0")
+}, {
+"duration": 1.0,
+"texture": SubResource("at1")
+}],
+"loop": true,
+"name": &"quieta",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at2")
+}, {
+"duration": 1.0,
+"texture": SubResource("at3")
+}, {
+"duration": 1.0,
+"texture": SubResource("at4")
+}, {
+"duration": 1.0,
+"texture": SubResource("at5")
+}],
+"loop": true,
+"name": &"correr",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at6")
+}],
+"loop": false,
+"name": &"saltar",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at7")
+}],
+"loop": false,
+"name": &"caer",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at8")
+}, {
+"duration": 1.0,
+"texture": SubResource("at9")
+}, {
+"duration": 1.0,
+"texture": SubResource("at10")
+}, {
+"duration": 1.0,
+"texture": SubResource("at11")
+}],
+"loop": true,
+"name": &"rodar",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at12")
+}, {
+"duration": 1.0,
+"texture": SubResource("at13")
+}],
+"loop": true,
+"name": &"curar",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at14")
+}],
+"loop": false,
+"name": &"herida",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at15")
+}],
+"loop": false,
+"name": &"dormida",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="jug"]
+size = Vector2(14, 26)
+
+[sub_resource type="RectangleShape2D" id="s_PisoObservatorio"]
+size = Vector2(1240, 40)
+
+[sub_resource type="RectangleShape2D" id="s_PisoPueblo"]
+size = Vector2(1000, 40)
+
+[sub_resource type="RectangleShape2D" id="s_PisoRuinas"]
+size = Vector2(1600, 40)
+
+[sub_resource type="RectangleShape2D" id="s_PisoArena"]
+size = Vector2(1040, 40)
+
+[sub_resource type="RectangleShape2D" id="s_ParedIzquierda"]
+size = Vector2(40, 700)
+
+[sub_resource type="RectangleShape2D" id="s_ParedDerecha"]
+size = Vector2(40, 700)
+
+[sub_resource type="RectangleShape2D" id="s_Escalon"]
+size = Vector2(60, 30)
+
+[sub_resource type="RectangleShape2D" id="s_Plataforma1"]
+size = Vector2(100, 16)
+
+[sub_resource type="RectangleShape2D" id="s_Plataforma2"]
+size = Vector2(100, 16)
+
+[sub_resource type="RectangleShape2D" id="s_Plataforma3"]
+size = Vector2(140, 16)
+
+[sub_resource type="RectangleShape2D" id="s_Repisa"]
+size = Vector2(100, 16)
+
+[node name="Mundo" type="Node2D"]
+
+[node name="Fondos" type="Node2D" parent="."]
+z_index = -10
+
+[node name="FondoObservatorio" type="ColorRect" parent="Fondos"]
+offset_left = 0.0
+offset_top = -400.0
+offset_right = 1200.0
+offset_bottom = 300.0
+mouse_filter = 2
+color = Color(0.07, 0.08, 0.2, 1)
+
+[node name="FondoPueblo" type="ColorRect" parent="Fondos"]
+offset_left = 1200.0
+offset_top = -400.0
+offset_right = 2200.0
+offset_bottom = 300.0
+mouse_filter = 2
+color = Color(0.13, 0.1, 0.24, 1)
+
+[node name="FondoRuinas" type="ColorRect" parent="Fondos"]
+offset_left = 2200.0
+offset_top = -400.0
+offset_right = 3800.0
+offset_bottom = 300.0
+mouse_filter = 2
+color = Color(0.06, 0.13, 0.16, 1)
+
+[node name="FondoArena" type="ColorRect" parent="Fondos"]
+offset_left = 3800.0
+offset_top = -400.0
+offset_right = 4800.0
+offset_bottom = 300.0
+mouse_filter = 2
+color = Color(0.16, 0.06, 0.12, 1)
+
+[node name="Suelo" type="StaticBody2D" parent="."]
+
+[node name="PisoObservatorio" type="CollisionShape2D" parent="Suelo"]
+position = Vector2(580.0, 320.0)
+shape = SubResource("s_PisoObservatorio")
+
+[node name="Color" type="ColorRect" parent="Suelo/PisoObservatorio"]
+offset_left = -620.0
+offset_top = -20.0
+offset_right = 620.0
+offset_bottom = 20.0
+mouse_filter = 2
+color = Color(0.25, 0.27, 0.45, 1)
+
+[node name="PisoPueblo" type="CollisionShape2D" parent="Suelo"]
+position = Vector2(1700.0, 320.0)
+shape = SubResource("s_PisoPueblo")
+
+[node name="Color" type="ColorRect" parent="Suelo/PisoPueblo"]
+offset_left = -500.0
+offset_top = -20.0
+offset_right = 500.0
+offset_bottom = 20.0
+mouse_filter = 2
+color = Color(0.35, 0.27, 0.45, 1)
+
+[node name="PisoRuinas" type="CollisionShape2D" parent="Suelo"]
+position = Vector2(3000.0, 320.0)
+shape = SubResource("s_PisoRuinas")
+
+[node name="Color" type="ColorRect" parent="Suelo/PisoRuinas"]
+offset_left = -800.0
+offset_top = -20.0
+offset_right = 800.0
+offset_bottom = 20.0
+mouse_filter = 2
+color = Color(0.2, 0.36, 0.38, 1)
+
+[node name="PisoArena" type="CollisionShape2D" parent="Suelo"]
+position = Vector2(4320.0, 320.0)
+shape = SubResource("s_PisoArena")
+
+[node name="Color" type="ColorRect" parent="Suelo/PisoArena"]
+offset_left = -520.0
+offset_top = -20.0
+offset_right = 520.0
+offset_bottom = 20.0
+mouse_filter = 2
+color = Color(0.42, 0.2, 0.32, 1)
+
+[node name="ParedIzquierda" type="CollisionShape2D" parent="Suelo"]
+position = Vector2(-20.0, -50.0)
+shape = SubResource("s_ParedIzquierda")
+
+[node name="Color" type="ColorRect" parent="Suelo/ParedIzquierda"]
+offset_left = -20.0
+offset_top = -350.0
+offset_right = 20.0
+offset_bottom = 350.0
+mouse_filter = 2
+color = Color(0.15, 0.16, 0.3, 1)
+
+[node name="ParedDerecha" type="CollisionShape2D" parent="Suelo"]
+position = Vector2(4820.0, -50.0)
+shape = SubResource("s_ParedDerecha")
+
+[node name="Color" type="ColorRect" parent="Suelo/ParedDerecha"]
+offset_left = -20.0
+offset_top = -350.0
+offset_right = 20.0
+offset_bottom = 350.0
+mouse_filter = 2
+color = Color(0.3, 0.12, 0.22, 1)
+
+[node name="Escalon" type="CollisionShape2D" parent="Suelo"]
+position = Vector2(510.0, 285.0)
+shape = SubResource("s_Escalon")
+
+[node name="Color" type="ColorRect" parent="Suelo/Escalon"]
+offset_left = -30.0
+offset_top = -15.0
+offset_right = 30.0
+offset_bottom = 15.0
+mouse_filter = 2
+color = Color(0.3, 0.33, 0.55, 1)
+
+[node name="Plataforma1" type="CollisionShape2D" parent="Suelo"]
+position = Vector2(2650.0, 258.0)
+shape = SubResource("s_Plataforma1")
+
+[node name="Color" type="ColorRect" parent="Suelo/Plataforma1"]
+offset_left = -50.0
+offset_top = -8.0
+offset_right = 50.0
+offset_bottom = 8.0
+mouse_filter = 2
+color = Color(0.28, 0.48, 0.5, 1)
+
+[node name="Plataforma2" type="CollisionShape2D" parent="Suelo"]
+position = Vector2(2830.0, 208.0)
+shape = SubResource("s_Plataforma2")
+
+[node name="Color" type="ColorRect" parent="Suelo/Plataforma2"]
+offset_left = -50.0
+offset_top = -8.0
+offset_right = 50.0
+offset_bottom = 8.0
+mouse_filter = 2
+color = Color(0.28, 0.48, 0.5, 1)
+
+[node name="Plataforma3" type="CollisionShape2D" parent="Suelo"]
+position = Vector2(3030.0, 158.0)
+shape = SubResource("s_Plataforma3")
+
+[node name="Color" type="ColorRect" parent="Suelo/Plataforma3"]
+offset_left = -70.0
+offset_top = -8.0
+offset_right = 70.0
+offset_bottom = 8.0
+mouse_filter = 2
+color = Color(0.28, 0.48, 0.5, 1)
+
+[node name="Repisa" type="CollisionShape2D" parent="Suelo"]
+position = Vector2(3490.0, 178.0)
+shape = SubResource("s_Repisa")
+
+[node name="Color" type="ColorRect" parent="Suelo/Repisa"]
+offset_left = -50.0
+offset_top = -8.0
+offset_right = 50.0
+offset_bottom = 8.0
+mouse_filter = 2
+color = Color(0.28, 0.48, 0.5, 1)
+
+[node name="Observatorio" type="Node2D" parent="."]
+
+[node name="ZonaObservatorio" type="Area2D" parent="Observatorio"]
+position = Vector2(150, 150)
+script = ExtResource("5")
+tipo = "zona"
+nombre = "observatorio"
+
+[node name="Cama" type="Area2D" parent="Observatorio"]
+position = Vector2(80, 284)
+script = ExtResource("5")
+tipo = "descanso"
+dibujo = 11
+
+[node name="Runa1" type="Area2D" parent="Observatorio"]
+position = Vector2(220, 284)
+script = ExtResource("5")
+tipo = "runa"
+texto = "A / D: moverte\nEspacio: saltar"
+dibujo = 19
+
+[node name="Runa2" type="Area2D" parent="Observatorio"]
+position = Vector2(400, 284)
+script = ExtResource("5")
+tipo = "runa"
+texto = "Mantén Espacio para saltar más alto"
+dibujo = 19
+
+[node name="Runa3" type="Area2D" parent="Observatorio"]
+position = Vector2(640, 284)
+script = ExtResource("5")
+tipo = "runa"
+texto = "J: atacar\nK: rodar"
+dibujo = 19
+
+[node name="Runa4" type="Area2D" parent="Observatorio"]
+position = Vector2(800, 284)
+script = ExtResource("5")
+tipo = "runa"
+texto = "J justo antes del golpe: ¡parry!"
+dibujo = 19
+
+[node name="Runa5" type="Area2D" parent="Observatorio"]
+position = Vector2(1100, 284)
+script = ExtResource("5")
+tipo = "runa"
+texto = "Q: curar con energía\nC: carga · 1: poción"
+dibujo = 19
+
+[node name="Escarabajo1" type="CharacterBody2D" parent="Observatorio"]
+position = Vector2(950, 290)
+script = ExtResource("3")
+
+[node name="Pueblo" type="Node2D" parent="."]
+
+[node name="ZonaPueblo" type="Area2D" parent="Pueblo"]
+position = Vector2(1220, 150)
+script = ExtResource("5")
+tipo = "zona"
+nombre = "pueblo"
+
+[node name="Runa6" type="Area2D" parent="Pueblo"]
+position = Vector2(1300, 284)
+script = ExtResource("5")
+tipo = "runa"
+texto = "E: hablar y usar\nI: inventario · M: mapa"
+dibujo = 19
+
+[node name="Oraculo" type="Area2D" parent="Pueblo"]
+position = Vector2(1450, 284)
+script = ExtResource("5")
+nombre = "Oráculo lunar"
+texto = "Por fin despiertas, viajera.\nEl Guardián Astral selló el cielo y robó las estrellas.\nEn las ruinas hay un santuario: su poder te dejará cruzar el escudo del Guardián.\nVe con cuidado."
+
+[node name="Caracol" type="Area2D" parent="Pueblo"]
+position = Vector2(1650, 284)
+script = ExtResource("5")
+tipo = "tienda"
+nombre = "Caracol mercader"
+texto = "Despaaacio, que tengo cosas buenas."
+dibujo = 7
+
+[node name="Hongo" type="Area2D" parent="Pueblo"]
+position = Vector2(1850, 284)
+script = ExtResource("5")
+nombre = "Hongo farolillo"
+texto = "¡Hola! Yo alumbro el camino a las ruinas.\nLas polillas avisan antes de lanzarse: rueda con K o haz parry con J.\nToma, una poción. Úsala con la tecla 1."
+dibujo = 8
+regalo = "pocion"
+
+[node name="Hoguera1" type="Area2D" parent="Pueblo"]
+position = Vector2(2050, 284)
+script = ExtResource("5")
+tipo = "descanso"
+dibujo = 15
+
+[node name="Ruinas" type="Node2D" parent="."]
+
+[node name="ZonaRuinas" type="Area2D" parent="Ruinas"]
+position = Vector2(2220, 150)
+script = ExtResource("5")
+tipo = "zona"
+nombre = "ruinas"
+
+[node name="Escarabajo2" type="CharacterBody2D" parent="Ruinas"]
+position = Vector2(2450, 290)
+script = ExtResource("3")
+
+[node name="Polilla1" type="CharacterBody2D" parent="Ruinas"]
+position = Vector2(2750, 120)
+script = ExtResource("3")
+volador = true
+
+[node name="Escarabajo3" type="CharacterBody2D" parent="Ruinas"]
+position = Vector2(3250, 290)
+script = ExtResource("3")
+
+[node name="Polilla2" type="CharacterBody2D" parent="Ruinas"]
+position = Vector2(3350, 200)
+script = ExtResource("3")
+volador = true
+
+[node name="Cristal1" type="Area2D" parent="Ruinas"]
+position = Vector2(2350, 284)
+script = ExtResource("5")
+tipo = "objeto"
+dibujo = 14
+regalo = "cristal"
+
+[node name="Cristal2" type="Area2D" parent="Ruinas"]
+position = Vector2(2650, 234)
+script = ExtResource("5")
+tipo = "objeto"
+dibujo = 14
+regalo = "cristal"
+
+[node name="Cristal3" type="Area2D" parent="Ruinas"]
+position = Vector2(2830, 184)
+script = ExtResource("5")
+tipo = "objeto"
+dibujo = 14
+regalo = "cristal"
+
+[node name="Cristal4" type="Area2D" parent="Ruinas"]
+position = Vector2(3150, 284)
+script = ExtResource("5")
+tipo = "objeto"
+dibujo = 14
+regalo = "cristal"
+
+[node name="Cristal5" type="Area2D" parent="Ruinas"]
+position = Vector2(3490, 154)
+script = ExtResource("5")
+tipo = "objeto"
+dibujo = 14
+regalo = "cristal"
+
+[node name="Cofre" type="Area2D" parent="Ruinas"]
+position = Vector2(3040, 134)
+script = ExtResource("5")
+tipo = "cofre"
+dibujo = 13
+regalo = "amuleto"
+
+[node name="Santuario" type="Area2D" parent="Ruinas"]
+position = Vector2(3650, 284)
+script = ExtResource("5")
+tipo = "santuario"
+texto = "Una luz antigua te envuelve.\nHas obtenido los Nodos de Relámpago."
+dibujo = 20
+
+[node name="Arena" type="Node2D" parent="."]
+
+[node name="ZonaArena" type="Area2D" parent="Arena"]
+position = Vector2(3820, 150)
+script = ExtResource("5")
+tipo = "zona"
+nombre = "arena"
+
+[node name="Hoguera2" type="Area2D" parent="Arena"]
+position = Vector2(3900, 284)
+script = ExtResource("5")
+tipo = "descanso"
+dibujo = 15
+
+[node name="Runa7" type="Area2D" parent="Arena"]
+position = Vector2(4020, 284)
+script = ExtResource("5")
+tipo = "runa"
+texto = "Su escudo solo cae con el Impulso:\nnodos (L) y luego W + Espacio"
+dibujo = 19
+
+[node name="Jefe" type="CharacterBody2D" parent="Arena"]
+position = Vector2(4420, 220)
+script = ExtResource("4")
+
+[node name="LuzFinal" type="Area2D" parent="Arena"]
+position = Vector2(4700, 284)
+script = ExtResource("5")
+tipo = "luz_final"
+dibujo = 18
+
+[node name="Jugadora" type="CharacterBody2D" parent="."]
+position = Vector2(80, 286)
+script = ExtResource("1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Jugadora"]
+position = Vector2(0, -3)
+sprite_frames = SubResource("sf")
+animation = &"quieta"
+autoplay = "quieta"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugadora"]
+shape = SubResource("jug")
+
+[node name="Camera2D" type="Camera2D" parent="Jugadora"]
+zoom = Vector2(3, 3)
+limit_left = 0
+limit_right = 4800
+limit_bottom = 340
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
